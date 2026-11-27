@@ -57,4 +57,8 @@ Car gần nhất và xa nhất là `s01f07` #1 và #11. Từ 8,67 m lên 37,89 m
 
 Mô hình 3D học kích thước vật theo mét và vị trí trong không gian. Với vật thưa điểm, ảnh camera và quan hệ che khuất giúp tránh suy kích thước từ một cụm điểm thiếu.
 
-Đã dùng Codex để khôi phục CVAT, kiểm tra bộ frame theo MSSV, so khớp nhận diện 2D chạy local với cụm LiDAR, và chuẩn bị báo cáo từ Bảng A cùng phiếu tự kiểm. Job đúng MSSV giữ lại 12 hộp có trước và thêm 44 hộp có nguồn `auto`. Tọa độ tâm và các kích thước hộp mới được ước lượng từ dữ liệu. Cần rà hướng đầu xe, lớp của các cụm thưa và các cảnh báo trên ảnh. Mười ảnh preview được tạo trên máy để hỗ trợ rà soát. ZIP gồm 11 ảnh chụp CVAT, với các giới hạn minh chứng ghi ở mục 2 và 4. Chưa có kết quả kiểm chéo.
+Công cụ: Codex.  
+Câu hỏi chính: Kiểm tra các cuboid tôi đã tự vẽ trên CVAT có đúng chưa.  
+Cách dùng kết quả: Tham khảo góp ý để rà soát lại các cuboid.
+
+Cần rà hướng đầu xe, lớp của các cụm thưa và các cảnh báo trên ảnh. Mười ảnh preview được tạo trên máy để hỗ trợ rà soát. ZIP gồm 11 ảnh chụp CVAT, với các giới hạn minh chứng ghi ở mục 2 và 4. Chưa có kết quả kiểm chéo.
