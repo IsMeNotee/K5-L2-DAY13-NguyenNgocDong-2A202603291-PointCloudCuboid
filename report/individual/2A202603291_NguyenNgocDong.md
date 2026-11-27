@@ -35,10 +35,10 @@ Tám frame còn lại dùng cùng hệ trục. `s02f08` có các cụm xe buýt 
 
 | Hiện tượng | Dấu hiệu đo được trên các frame của bài cá nhân | Ảnh CVAT và giới hạn minh chứng | Cách xử lý khi gán nhãn |
 |---|---|---|---|
-| Bóng che | Ở `s03f53`, Car #2 cách 14,41 m và Car #4 cách 21,62 m. Hình chiếu phương vị của hai hộp chồng khoảng 98% vùng góc của hộp xa. Che khuất là giả thuyết từ vị trí hai hộp. | `t4-1-bong-che.png` là ảnh bối cảnh `s02f08`. Cặp xe đo ở `s03f53` chưa có ảnh cận. | Dò mặt thấy được trước khi suy bề dài phía khuất. |
-| Thưa ở xa | `s01f07` Car #11 ở 37,89 m có 90 điểm, còn `s01f51` Car #2 ở 8,67 m có 1.284 điểm. | `t4-2-thua-o-xa.png` chụp `s01f07`. Hộp #11 chưa được đánh dấu riêng. | Dùng camera để xác định loại xe và chiều tiến nếu LiDAR chỉ còn vài lát. |
-| Phản xạ thấp | `s01f51` Car #4 ở 15,64 m có trung vị intensity 0,00, so với 0,08 của `s01f07` Car #5 ở 16,40 m. Góc tới hoặc đặc tính bề mặt là các nguyên nhân khả dĩ. | `t4-3-phan-xa-thap.png` chụp `s01f51`. Số intensity lấy từ dữ liệu LiDAR. | Đối chiếu hình dạng và ảnh camera trước khi kết luận thiếu mặt xe. |
-| Điểm lạ | `s03f25` có một điểm gần (−2,94 m, 32,85 m, −1,02 m). Trong nhóm điểm ngoài mặt đất đã lọc, điểm lân cận gần nhất cách khoảng 0,95 m. | `t4-4-diem-la.png` chụp `s03f25`. Ảnh toàn cảnh chưa chỉ vị trí điểm này. | Kiểm lại trong góc Top và Side. Một điểm rời chưa đủ để suy ra vật riêng. |
+| Bóng che | Ở `s03f53`, Car #2 cách 14,41 m và Car #4 cách 21,62 m. Hình chiếu phương vị của hai hộp chồng khoảng 98% vùng góc của hộp xa. Che khuất là giả thuyết từ vị trí hai hộp. | `t4-1-bong-che.png` là ảnh bối cảnh `s02f08`. Cặp xe đo ở `s03f53` chưa có ảnh cận. | Nếu xác nhận vật bị che một phần thì bật `occluded`; cuboid vẫn bao trọn phần bị che có đủ cơ sở suy luận. Dò mặt thấy được trước khi suy bề dài phía khuất, không coi vùng trống sau vật che là đường trống. |
+| Thưa ở xa | `s01f07` Car #11 ở 37,89 m có 90 điểm, còn `s01f51` Car #2 ở 8,67 m có 1.284 điểm. Giả thuyết: ở xa, vật nhận ít tia quét hơn; góc tới và che khuất cũng có thể góp phần làm giảm số điểm. | `t4-2-thua-o-xa.png` chụp `s01f07`. Hộp #11 chưa được đánh dấu riêng. | Chỉ vẽ khi thấy khoảng 15–20% thể tích hoặc có đủ cơ sở suy luận từ camera và hình dạng. Không đủ cơ sở thì bỏ qua, ghi `LOW_VISIBILITY`; không kéo hộp theo vài điểm rời. |
+| Phản xạ thấp | `s01f51` Car #4 ở 15,64 m có trung vị intensity 0,00, so với 0,08 của `s01f07` Car #5 ở 16,40 m. Giả thuyết: góc tới hoặc đặc tính bề mặt làm tín hiệu phản xạ thấp; số intensity chưa đủ để xác định nguyên nhân. | `t4-3-phan-xa-thap.png` chụp `s01f51`. Số intensity lấy từ dữ liệu LiDAR. | Đối chiếu hình dạng và ảnh camera, chỉ bao các mặt có cơ sở xác định. Không khẳng định phản xạ thấp đồng nghĩa vật bị che hoặc thiếu mặt xe. |
+| Điểm lạ | `s03f25` có một điểm gần (−2,94 m, 32,85 m, −1,02 m). Trong nhóm điểm ngoài mặt đất đã lọc, điểm lân cận gần nhất cách khoảng 0,95 m. | `t4-4-diem-la.png` chụp `s03f25`. Ảnh toàn cảnh chưa chỉ vị trí điểm này. | Giả thuyết: điểm rời có thể là nhiễu đo hoặc phản xạ đa đường, chưa xác định được từ một frame. Kiểm lại ở Top và Side; không gán điểm lạ thành một vật riêng khi chưa có đủ bằng chứng. |
 
 ## 5. Đo và tự kiểm
 
@@ -49,7 +49,20 @@ Tám frame còn lại dùng cùng hệ trục. `s02f08` có các cụm xe buýt 
 | `s01f51` Car #4 | −1,080 | 1,454 | −1,807 | 15,64 | 15,68 | 265,9° | 403 |
 | `s01f07` Car #11 | −0,745 | 1,803 | −1,646 | 37,89 | 37,90 | 91,1° | 90 |
 
-Car gần nhất và xa nhất là `s01f07` #1 và #11. Từ 8,67 m lên 37,89 m, khoảng cách tăng 4,4 lần và số điểm giảm từ 1.284 xuống 90, còn khoảng 7%. Xu hướng giảm cũng có trong số liệu tham chiếu của bài giảng, từ 1.968 điểm ở 0–10 m xuống 72 ở 30–40 m. Góc tới, che khuất và kích thước cũng ảnh hưởng mật độ. Đáy của bốn ví dụ nằm gần mốc −1,7 m. Hai chiều yaw gần 270° và 90° có trong Bảng A, còn hướng nhìn thực tế phải đối chiếu camera. So với khoảng tham chiếu sedan, Car `s01f51` #2 ngắn hơn 0,15 m và hẹp hơn 0,13 m so với cận dưới. Cụm điểm có thể thiếu mép thân xe.
+Car gần nhất và xa nhất là `s01f07` #1 và #11. Từ 8,67 m lên 37,89 m, khoảng cách tăng 4,4 lần và số điểm giảm từ 1.284 xuống 90, còn khoảng 7%. Xu hướng giảm cũng có trong số liệu tham chiếu của bài giảng, từ 1.968 điểm ở 0–10 m xuống 72 ở 30–40 m. Góc tới, che khuất và kích thước cũng ảnh hưởng mật độ. Đáy của bốn ví dụ nằm gần mốc −1,7 m. Khoảng cách ngang dùng `dist_m = √(x² + y²)`, còn khoảng cách 3D tới tâm hộp dùng `r = √(x² + y² + z²)`. Đáy hộp tính bằng `z_đáy = z − h/2`; bốn ví dụ trong bảng chưa cho thấy lơ lửng hoặc chìm quá 0,3 m so với mốc mặt đường tham chiếu −1,7 m.
+
+**So kích thước với bảng 4.3**
+
+| Cuboid | Dài × rộng × cao (m) | Khoảng tham chiếu dài / rộng / cao (m) | Đối chiếu và giới hạn kết luận |
+|---|---|---|---|
+| Car `s01f51` #2 | 3,650 × 1,570 × 1,489 | Sedan, hatchback: 3,8–5,0 / 1,70–1,90 / 1,40–1,60 | Dài thấp hơn cận dưới 0,150 m, rộng thấp hơn 0,130 m; cao nằm trong khoảng. Giả thuyết là hộp chưa bao đủ mép thân xe hoặc loại xe không khớp nhóm tham chiếu; cần đối chiếu camera và các mặt hộp. |
+| Pedestrian `s03f25` #5 | 0,940 × 0,465 × 1,320 | Người lớn: 0,4–0,9 / 0,5–0,9 / 1,50–1,95 | Dài vượt cận trên 0,040 m, rộng thấp hơn cận dưới 0,035 m, cao thấp hơn 0,180 m. Giả thuyết là hộp chưa bám đủ các mặt hoặc tư thế khác người đứng thẳng; cần kiểm toàn bộ cơ thể trên Top, Side, Front và camera. Chiều cao nằm trong dải trẻ em 0,90–1,40 m, nhưng riêng số đo này không đủ để kết luận đây là trẻ em. |
+
+Các khoảng kích thước là tham chiếu; không đổi kích thước chỉ để nằm trong khoảng khi chưa kiểm lại vật trên CVAT.
+
+**Đọc hướng từ yaw đã gán**
+
+Theo hệ VF, phía trước là `−y`, xe cùng chiều có yaw gần 270°, xe ngược chiều gần 90°. Car `s01f51` #2 có yaw 264,3°, lệch 5,7° so với 270°, tức đang được gán hướng gần cùng chiều xe thu dữ liệu. Car `s01f07` #11 có yaw 91,1°, lệch 1,1° so với 90°, tức đang được gán hướng gần ngược chiều. Cách đọc này dựa trên tham số hộp; cần đối chiếu đầu/đuôi xe trong camera để xác nhận mũi tên đã gán đúng hướng thực tế.
 
 Ưu tiên rà `s03f53` Car #1 vì có 338 điểm sát mép ngoài, `s03f25` Pedestrian #4 vì có 87 điểm sát mép ngoài, và `s04f04` Car #3 vì rộng khoảng 2,60 m. `s01f07` Car #5 cần rà lớp và kích thước vì vừa rộng vừa cao hơn khoảng tham chiếu của Car. Phiếu tự kiểm là căn cứ chọn chỗ cần xem lại. Chưa xác nhận các cảnh báo này là lỗi.
 
