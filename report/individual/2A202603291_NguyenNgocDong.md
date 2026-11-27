@@ -29,7 +29,7 @@ Tám frame còn lại dùng cùng hệ trục. `s02f08` có các cụm xe buýt 
 | Bus | `s02f08` #1 | 10,926 × 2,860 × 3,126 | 82,9° | −1,866 | Đối chiếu gương và mặt bên khi quyết định bề rộng. |
 | Pedestrian cạnh Bus | `s03f25` #5 | 0,940 × 0,465 × 1,320 | 268,7° | −1,749 | Nằm thấp và hẹp hơn khoảng tham chiếu của người lớn. Cần kiểm tư thế và phần cơ thể bắt được trong đám mây điểm. |
 
-Ảnh chụp minh chứng trong CVAT dùng tên `t2-a-car.png`, `t2-b-bus-truck.png` và `t2-c-ped-cyclist.png`. Ba đáy hộp đều trong khoảng 0,17 m quanh mốc mặt đường −1,7 m. Ảnh chụp có các ô Top, Side và Front. Các góc yaw của nhãn tự động còn cần xác nhận bằng hình dạng đầu xe hoặc tư thế người.
+Ảnh chụp minh chứng trong CVAT dùng tên `t2-a-car.png`, `t2-b-bus-truck.png` và `t2-c-ped-cyclist.png`. Ba đáy hộp đều trong khoảng 0,17 m quanh mốc mặt đường −1,7 m. Ảnh chụp có các ô Top, Side và Front. Các góc yaw của cuboid còn cần xác nhận bằng hình dạng đầu xe hoặc tư thế người.
 
 ## 4. Bốn hiện tượng chất lượng
 
