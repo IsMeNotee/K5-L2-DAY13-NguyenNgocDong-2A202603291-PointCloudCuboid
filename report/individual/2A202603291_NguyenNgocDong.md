@@ -4,7 +4,7 @@
 
 Task `D13-2A202603291`, job #6 trên CVAT local 2.41.0, Windows. Mười frame là `s01f07`, `s01f51`, `s02f08`, `s02f31`, `s03f25`, `s03f53`, `s04f04`, `s04f34`, `s05f00` và `s05f26`.
 
-Job có 56 cuboid Shape. Frame `s01f07` có 11 hộp. Chín frame còn lại cùng có ít nhất, mỗi frame 5 hộp. Ưu tiên các cụm đủ rõ để đạt số hộp tối thiểu trên từng frame. Phiếu tự kiểm đánh dấu 11/56 hộp, trong đó 7 hộp thuộc `s01f07`. Mức độ khớp với mặt đường có thể kiểm bằng khoảng hở đáy. Chiều tiến ở các xe xa hoặc chỉ thấy một đầu vẫn cần đối chiếu camera. Chưa có thông tin về người kiểm chéo hoặc kết quả vòng hiệu chuẩn.
+Job có 56 cuboid Shape. Frame `s01f07` có 11 hộp. Chín frame còn lại cùng có ít nhất, mỗi frame 5 hộp. Ưu tiên các cụm đủ rõ để đạt số hộp tối thiểu trên từng frame. Phiếu tự kiểm đánh dấu 11/56 hộp, trong đó 7 hộp thuộc `s01f07`. Mức độ khớp với mặt đường có thể kiểm bằng khoảng hở đáy. Chiều tiến ở các xe xa hoặc chỉ thấy một đầu vẫn cần đối chiếu camera. Đã đổi kiểm với MSSV `2A202603263`; thông tin ở mục 5. Kết quả vòng hiệu chuẩn chưa được ghi trong báo cáo.
 
 Trong CVAT, dùng góc nhìn từ trên để căn chiều dài và yaw, rồi kiểm độ cao ở Side và Front. Chọn Shape cho từng vật. Bật Cuboid orientation để thấy vạch đỏ `+X` và dùng `preview` để đối chiếu với ảnh camera.
 
@@ -66,12 +66,21 @@ Theo hệ VF, phía trước là `−y`, xe cùng chiều có yaw gần 270°, x
 
 Ưu tiên rà `s03f53` Car #1 vì có 338 điểm sát mép ngoài, `s03f25` Pedestrian #4 vì có 87 điểm sát mép ngoài, và `s04f04` Car #3 vì rộng khoảng 2,60 m. `s01f07` Car #5 cần rà lớp và kích thước vì vừa rộng vừa cao hơn khoảng tham chiếu của Car. Phiếu tự kiểm là căn cứ chọn chỗ cần xem lại. Chưa xác nhận các cảnh báo này là lỗi.
 
+**Đổi kiểm và tự kiểm bổ sung**
+
+Đã đổi kiểm với **Đặng Thu Thúy — MSSV `2A202603263`**. Chi tiết hai con số và kết quả của lần đổi kiểm được lưu trên máy local, hiện chưa truy cập lại được.
+
+Hai phép tự kiểm bổ sung từ Bảng A hiện tại:
+
+- `s01f51` Car #4: `z_đáy = −1,080 − 1,454/2 = −1,807 m`, khớp cột `z_bottom`.
+- `s01f07` Car #1: `dist_m = √(3,917² + 0,422²) ≈ 3,94 m`, khớp cột `dist_m`.
+
 ## 6. Vai trò của nhãn và việc dùng AI
 
 Mô hình 3D học kích thước vật theo mét và vị trí trong không gian. Với vật thưa điểm, ảnh camera và quan hệ che khuất giúp tránh suy kích thước từ một cụm điểm thiếu.
 
 Công cụ: Codex.  
-Câu hỏi chính: Kiểm tra các cuboid tôi đã tự vẽ trên CVAT có đúng chưa.  
-Cách dùng kết quả: Tham khảo góp ý để rà soát lại các cuboid.
+Câu hỏi chính: Kiểm tra các cuboid tôi đã tự vẽ trên CVAT và soát lỗi bài nộp.  
+Cách dùng kết quả: Tham khảo góp ý để rà soát lại các cuboid, kiểm tra phép tính và chỉnh phần trình bày báo cáo.
 
-Cần rà hướng đầu xe, lớp của các cụm thưa và các cảnh báo trên ảnh. Mười ảnh preview được tạo trên máy để hỗ trợ rà soát. ZIP gồm 11 ảnh chụp CVAT, với các giới hạn minh chứng ghi ở mục 2 và 4. Chưa có kết quả kiểm chéo.
+Cần rà hướng đầu xe, lớp của các cụm thưa và các cảnh báo trên ảnh. Mười ảnh preview được tạo trên máy để hỗ trợ rà soát. ZIP gồm 11 ảnh chụp CVAT, với các giới hạn minh chứng ghi ở mục 2 và 4. Thông tin đổi kiểm và hai phép tự kiểm bổ sung được ghi ở mục 5.
